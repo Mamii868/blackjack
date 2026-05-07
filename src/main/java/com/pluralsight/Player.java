@@ -3,12 +3,14 @@ package com.pluralsight;
 public class Player {
     private final String name;
     private Hand hand;
+    private double money;
     private int wins;
     private int losses;
     private int blackjacks;
 
-    public Player(String name) {
+    public Player(String name, double money) {
         this.name = name;
+        this.money = money;
     }
 
     public Hand getHand() {
@@ -18,6 +20,7 @@ public class Player {
     public void setHand(Hand hand) {
         this.hand = hand;
     }
+
 
     public void dealStartingHand(Deck deck) {
 //        Check if the player already has a hand
@@ -33,5 +36,17 @@ public class Player {
             // deal that card to the hand
             this.hand.deal(card);
         }
+    }
+
+    //    Adds another card to the player's hand and returns the value of the entire hand
+    public int hit(Deck deck) {
+        Card card = deck.deal();
+        this.hand.deal(card);
+
+        return this.hand.getValue();
+    }
+
+    public void doubleHit() {
+
     }
 }
