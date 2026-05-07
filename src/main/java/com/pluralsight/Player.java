@@ -18,4 +18,20 @@ public class Player {
     public void setHand(Hand hand) {
         this.hand = hand;
     }
+
+    public void dealStartingHand(Deck deck) {
+//        Check if the player already has a hand
+        if (this.hand.getSize() > 0) {
+            System.out.println("Hand has already been dealt!");
+            return;
+        }
+
+        // deal 5 cards from the deck and add them to the hand
+        for (int i = 0; i < 5; i++) {
+            // get a card from the deck
+            Card card = deck.deal();
+            // deal that card to the hand
+            this.hand.deal(card);
+        }
+    }
 }
