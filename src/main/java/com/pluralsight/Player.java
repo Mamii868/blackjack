@@ -63,4 +63,19 @@ public class Player {
         return this.hand.getValue();
     }
 
+    public void addLoss() {
+        this.losses += 1;
+    }
+
+    public void addWin() {
+        this.wins += 1;
+    }
+
+    public void addBlackjack() {
+        if (this.hand.getValue() == 21) {
+            this.blackjacks += 1;
+        } else {
+            System.out.println("Player did not have a blackjack! score not updated.");
+        }
+    }
 }

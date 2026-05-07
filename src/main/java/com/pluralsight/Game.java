@@ -18,4 +18,12 @@ public class Game {
             System.out.println(player.getName() + " does not have enough money!");
         }
     }
+
+//    Removes player's hand and adds a loss to their record
+    public void bust(Player player) {
+        player.setHand(null);
+        player.addLoss();
+        System.out.println(player.getName() + " bust!");
+
+    }
 }
