@@ -38,4 +38,11 @@ public class Game {
         player.addLoss();
         System.out.println("The dealer won the round!");
     }
+
+    //    addBlackjack will check if the hand is 21, so it needs to be called before the hand is removed
+    public void blackjack(Player player) {
+        player.addBlackjack();
+        player.setHand(null);
+        System.out.println(player.getName() + " got a blackjack!");
+    }
 }
