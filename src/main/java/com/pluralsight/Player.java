@@ -13,6 +13,23 @@ public class Player {
         this.money = money;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public double getMoney() {
+        return money;
+    }
+
+    //    Will return a boolean depending on if money was able to be bet for the game to handle
+    public boolean betMoney(double amount) {
+        if (this.money - amount > 0) {
+            this.money -= amount;
+            return true;
+        }
+        return false;
+    }
+
     public Hand getHand() {
         return this.hand;
     }
@@ -46,7 +63,4 @@ public class Player {
         return this.hand.getValue();
     }
 
-    public void doubleHit() {
-
-    }
 }
