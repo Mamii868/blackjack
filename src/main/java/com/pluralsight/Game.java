@@ -19,11 +19,23 @@ public class Game {
         }
     }
 
-//    Removes player's hand and adds a loss to their record
+    //    Removes player's hand and adds a loss to their record
     public void bust(Player player) {
         player.setHand(null);
         player.addLoss();
         System.out.println(player.getName() + " bust!");
 
+    }
+
+    public void win(Player player) {
+        player.setHand(null);
+        player.addWin();
+        System.out.println(player.getName() + " won the round!");
+    }
+
+    public void loss(Player player) {
+        player.setHand(null);
+        player.addLoss();
+        System.out.println("The dealer won the round!");
     }
 }
