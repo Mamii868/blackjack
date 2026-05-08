@@ -15,13 +15,26 @@ public class GameMenu {
         double playerMoney = scanner.nextDouble();
 
         Player player = new Player(playerName, playerMoney);
+        Player dealer = new Player("Dealer", 0);
 
         while (true) {
             Deck deck = new Deck();
 
+//            Enter Bet amount
+            System.out.println("Current Balance: $" + String.format("%.2f", player.getMoney()));
+            System.out.println("Enter how much you want to bet: ");
+            double betAmount = scanner.nextDouble();
+            scanner.nextLine();
+
+//            Deal first hand
             player.dealStartingHand(deck);
-            System.out.println("You currently have: " + player.getHand().getValue());
-            break;
+            dealer.dealStartingHand(deck);
+            System.out.println(player.getName() + "currently has: " + player.getHand().getValue());
+
+            System.out.println("""
+                    []et
+                    [
+                    """);
         }
     }
 }

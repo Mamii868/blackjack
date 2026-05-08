@@ -49,7 +49,7 @@ public class Player {
         this.hand = new Hand();
 
         // deal 5 cards from the deck and add them to the hand
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 2; i++) {
             // get a card from the deck
             Card card = deck.deal();
             // deal that card to the hand
