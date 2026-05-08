@@ -8,6 +8,7 @@ public class BlackjackApp {
         try {
             displayMenu();
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Something went wrong! Exiting...");
             System.exit(500);
         }

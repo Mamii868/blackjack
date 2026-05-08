@@ -9,13 +9,15 @@ public class Game {
     public Game() {
     }
 
-    public void bet(Player player, double amount) {
+    public boolean bet(Player player, double amount) {
         boolean hasEnough = player.betMoney(amount);
 
         if (hasEnough) {
             System.out.println(player.getName() + " bet $" + String.format("%.2f", amount));
+            return true;
         } else {
             System.out.println(player.getName() + " does not have enough money!");
+            return false;
         }
     }
 
