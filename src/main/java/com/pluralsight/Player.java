@@ -21,6 +21,10 @@ public class Player {
         return money;
     }
 
+    public void addMoney(double money) {
+        this.money += money;
+    }
+
     //    Will return a boolean depending on if money was able to be bet for the game to handle
     public boolean betMoney(double amount) {
         if (this.money - amount > 0) {
