@@ -85,7 +85,7 @@ public class GameMenu {
             }
 
 //            Dealer hit. Will always stand at 17 or greater.
-            while (dealer.getHand().getValue() < 17) {
+            while (dealer.getHand().getValue() < 17 && dealer.getHand().getValue() < player.getHand().getValue()) {
                 dealer.hit(deck);
             }
 
@@ -107,30 +107,30 @@ public class GameMenu {
             }
 
 //            Blackjack Win
-            if (player.getHand().getValue() == 21) {
+            else if (player.getHand().getValue() == 21) {
                 game.blackjack(player);
-                System.out.println("You Win $" + String.format("%.2f",betAmount * 2.5));
+                System.out.println("You Win $" + String.format("%.2f", betAmount * 2.5));
                 player.addMoney(betAmount * 2.5);
                 System.out.println("Current Balance: $" + String.format("%.2f", player.getMoney()));
 
             }
 
 //            Bust Loss
-            if (player.getHand().getValue() > 21) {
+            else if (player.getHand().getValue() > 21) {
                 game.bust(player);
                 System.out.println("Current Balance: $" + String.format("%.2f", player.getMoney()));
             }
 
 //            Regular Win
-            if (player.getHand().getValue() > dealer.getHand().getValue() || dealer.getHand().getValue() > 21) {
+            else if (player.getHand().getValue() > dealer.getHand().getValue() || dealer.getHand().getValue() > 21) {
                 game.win(player);
-                System.out.println("Earned $" + String.format("%.2f",betAmount * 2));
+                System.out.println("Earned $" + String.format("%.2f", betAmount * 2));
                 player.addMoney(betAmount * 2);
                 System.out.println("Current Balance: $" + String.format("%.2f", player.getMoney()));
             }
 
 //            Regular Loss
-            if (player.getHand().getValue() < dealer.getHand().getValue()) {
+            else if (player.getHand().getValue() < dealer.getHand().getValue()) {
                 System.out.println("You Lose... ");
                 game.loss(player);
                 System.out.println("Current Balance: $" + String.format("%.2f", player.getMoney()));
