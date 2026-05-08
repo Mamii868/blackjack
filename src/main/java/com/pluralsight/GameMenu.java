@@ -54,10 +54,11 @@ public class GameMenu {
 
             while (isPlaying) {
 
+                System.out.println();
                 System.out.println(dealer.getName() + " currently has: " + dealer.getHand().getValue());
                 System.out.println();
                 System.out.println(player.getName() + " currently has: " + player.getHand().getValue());
-
+                System.out.println();
 
                 System.out.println(menuOptions);
 
@@ -77,16 +78,74 @@ public class GameMenu {
                                 [S]tand
                                 """;
                     }
-                    case "d", "s" -> isPlaying = false;
+                    case "d", "s" -> {
+                        isPlaying = false;
+                    }
                 }
             }
 
-            if (player.getHand().getValue() > 21) {
-                System.out.println("Blackjack! You Win $" + betAmount * 1.5);
-                player.addBlackjack();
-                player.addMoney(betAmount * 1.5);
+//            Dealer hit. Will always stand at 17 or greater.
+            while (dealer.getHand().getValue() < 17) {
+                dealer.hit(deck);
             }
 
+            Thread.sleep(1000);
+
+            System.out.println();
+            System.out.println(dealer.getName() + " currently has: " + dealer.getHand().getValue());
+            System.out.println();
+            System.out.println(player.getName() + " currently has: " + player.getHand().getValue());
+            System.out.println();
+
+            Thread.sleep(1000);
+
+//            Tie
+            if (player.getHand().getValue() == dealer.getHand().getValue()) {
+                System.out.println("Tie! Returning bet...");
+                player.addMoney(betAmount);
+                System.out.println("Current Balance: $" + String.format("%.2f", player.getMoney()));
+            }
+
+//            Blackjack Win
+            if (player.getHand().getValue() == 21) {
+                game.blackjack(player);
+                System.out.println("You Win $" + String.format("%.2f",betAmount * 2.5));
+                player.addMoney(betAmount * 2.5);
+                System.out.println("Current Balance: $" + String.format("%.2f", player.getMoney()));
+
+            }
+
+//            Bust Loss
+            if (player.getHand().getValue() > 21) {
+                game.bust(player);
+                System.out.println("Current Balance: $" + String.format("%.2f", player.getMoney()));
+            }
+
+//            Regular Win
+            if (player.getHand().getValue() > dealer.getHand().getValue() || dealer.getHand().getValue() > 21) {
+                game.win(player);
+                System.out.println("Earned $" + String.format("%.2f",betAmount * 2));
+                player.addMoney(betAmount * 2);
+                System.out.println("Current Balance: $" + String.format("%.2f", player.getMoney()));
+            }
+
+//            Regular Loss
+            if (player.getHand().getValue() < dealer.getHand().getValue()) {
+                System.out.println("You Lose... ");
+                game.loss(player);
+                System.out.println("Current Balance: $" + String.format("%.2f", player.getMoney()));
+            }
+
+
+            dealer.setHand(null);
+            player.setHand(null);
+
+            System.out.print("Play again? (Y/N): ");
+            String playAgain = scanner.nextLine();
+
+            if (playAgain.equalsIgnoreCase("n")) {
+                break;
+            }
         }
     }
 
